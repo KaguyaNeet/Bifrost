@@ -1,0 +1,11 @@
+*.ipch
+*.pdb
+*.suo
+*.db
+*.db-shm
+*.db-wal
+/Binaries/*
+/Content/*
+/.vs/*
+/Intermediate/*
+/Saved/*
