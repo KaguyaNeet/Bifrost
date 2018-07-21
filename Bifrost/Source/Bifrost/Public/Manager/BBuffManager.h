@@ -39,7 +39,7 @@ private:
 	
 };
 
-#define FUNCTION_DECLARATION(name) \
+#define BUFF_FUNCTION_DECLARATION(name) \
 	namespace name \
 	{ \
 		static void Add##name(ABUnit* owner, ABUnit* adder); \
@@ -47,21 +47,21 @@ private:
 		static void Remove##name(ABUnit* owner, ABUnit* adder); \
 	}; \
 
-#define ADD_FUNCTION_DEFINITION(name) \
+#define ADD_BUFF_FUNCTION_DEFINITION(name) \
 	void BuffFunction::name::Add##name(ABUnit* owner, ABUnit* adder) \
 
-#define TICK_FUNCTION_DEFINITION(name) \
+#define TICK_BUFF_FUNCTION_DEFINITION(name) \
 	void BuffFunction::name::Tick##name(ABUnit* owner, ABUnit* adder) \
 
-#define REMOVE_FUNCTION_DEFINITION(name) \
+#define REMOVE_BUFF_FUNCTION_DEFINITION(name) \
 	void BuffFunction::name::Remove##name(ABUnit* owner, ABUnit* adder) \
 
-#define CHOOSE_FUNCTION(name) \
+#define CHOOSE_BUFF_FUNCTION(name) \
 	addFunction = &BuffFunction::##name##::Add##name; \
 	TickFunction = &BuffFunction::##name##::Tick##name; \
 	RemoveFunction = &BuffFunction::##name##::Remove##name; \
 
 namespace BuffFunction
 {
-	FUNCTION_DECLARATION(TestFunction);
+	BUFF_FUNCTION_DECLARATION(TestFunction);
 };

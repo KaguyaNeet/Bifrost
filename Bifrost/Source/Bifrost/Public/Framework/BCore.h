@@ -14,7 +14,13 @@ class BIFROST_API ABCore : public ABBuildingBase
 {
 	GENERATED_BODY()
 	
-	
+public:
+	ABCore();
+
+	static ABCore* GetEnemyCore(EUnitCamp selfCamp, AActor* caller);
+
+protected:
+	virtual void BeginPlay() override;
 	
 	
 };

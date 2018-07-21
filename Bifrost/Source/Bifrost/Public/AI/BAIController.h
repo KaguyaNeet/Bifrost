@@ -6,6 +6,15 @@
 #include "AIController.h"
 #include "BAIController.generated.h"
 
+UENUM(BlueprintType)
+enum class EAIState : uint8
+{
+	ENone UMETA(DisplayName = "None"),
+	EPatrol UMETA(DisplayName = "Patrol"),
+	EMove UMETA(DisplayName = "Move"),
+	EAttack UMETA(DisplayName = "Attack"),
+};
+
 /**
  * 
  */
@@ -15,11 +24,14 @@ class BIFROST_API ABAIController : public AAIController
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Component")
 		class UBehaviorTreeComponent* m_BehaviorTreeComponent;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
 		class UBlackboardComponent* m_BlackboardComponent;
 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AIState")
+		EAIState m_AIState = EAIState::ENone;
 public:
 	ABAIController();
 	

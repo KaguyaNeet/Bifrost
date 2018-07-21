@@ -23,8 +23,12 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
 		class UBehaviorTree* m_BehaviorTree;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterProperty")
+		float m_SearchDistance = 0.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterProperty")
+		float m_AttackDistance = 0.f;
 	
 	
 };

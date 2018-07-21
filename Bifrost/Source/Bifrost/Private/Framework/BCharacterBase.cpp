@@ -8,7 +8,7 @@
 ABCharacterBase::ABCharacterBase()
 {
 	AIControllerClass = ABAIController::StaticClass();
-
+	AutoPossessAI = EAutoPossessAI::Spawned;
 	GetCharacterMovement()->bUseRVOAvoidance = true;
 }
 

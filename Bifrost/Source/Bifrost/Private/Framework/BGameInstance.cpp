@@ -3,7 +3,9 @@
 #include "BGameInstance.h"
 #include "BUnitManager.h"
 #include "BBuffManager.h"
+#include "BCore.h"
 
+#include "Kismet/GameplayStatics.h"
 
 ABUnitManager* UBGameInstance::GetUnitManager()
 {
@@ -37,4 +39,39 @@ ABBuffManager* UBGameInstance::GetBuffManager()
 		}
 	}
 	return m_BuffManager;
+}
+
+ABCore * UBGameInstance::GetEnemyCore(EUnitCamp selfCamp)
+{
+	if (EUnitCamp::ENeatual == selfCamp)
+	{
+		return nullptr;
+	}
+	
+	if (nullptr == m_RedCore || nullptr == m_BlueCore)
+	{
+		TArray<AActor*> coreLists;
+		UGameplayStatics::GetAllActorsOfClass(this, ABCore::StaticClass(), coreLists);
+		for (auto it : coreLists)
+		{
+			if (ABCore* core = Cast<ABCore>(it))
+			{
+				core->m_UnitCamp == EUnitCamp::EBlue ? m_BlueCore = core : m_RedCore = core;
+			}
+			else
+			{
+				return nullptr;
+			}
+		}
+	}
+	return (selfCamp == EUnitCamp::EBlue ? m_RedCore : m_BlueCore);
+}
+
+void UBGameInstance::SetCore(ABCore * core)
+{
+	if (EUnitCamp::ENeatual == core->m_UnitCamp)
+	{
+		return;
+	}
+	core->m_UnitCamp == EUnitCamp::EBlue ? m_BlueCore = core : m_RedCore = core;
 }

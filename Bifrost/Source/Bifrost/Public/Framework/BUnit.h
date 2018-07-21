@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+#include "BCard.h"
 
 #include "Engine/DataTable.h"
 #include "CoreMinimal.h"
@@ -112,7 +113,7 @@ protected:
 	virtual void UnitTick();
 
 public:	
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UnitProperty")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UnitProperty")
 		EUnitCamp m_UnitCamp = EUnitCamp::ENeatual;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UnitProperty")
 		FUnitBaseAttribute m_BaseAttribute;

@@ -56,19 +56,19 @@ void ABBuffManager::GetFunction(int key, BuffFunction& addFunction, BuffFunction
 {
 	switch (key)
 	{
-		case 0:CHOOSE_FUNCTION(TestFunction); break;
+		case 0:CHOOSE_BUFF_FUNCTION(TestFunction); break;
 	}
 }
 
-ADD_FUNCTION_DEFINITION(TestFunction)
+ADD_BUFF_FUNCTION_DEFINITION(TestFunction)
 {
 
 }
-TICK_FUNCTION_DEFINITION(TestFunction)
+TICK_BUFF_FUNCTION_DEFINITION(TestFunction)
 {
 
 }
-REMOVE_FUNCTION_DEFINITION(TestFunction)
+REMOVE_BUFF_FUNCTION_DEFINITION(TestFunction)
 {
 
 }

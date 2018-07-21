@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+#include "BUnit.h"
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
@@ -17,7 +18,11 @@ class BIFROST_API UBGameInstance : public UGameInstance
 public:
 	class ABUnitManager* GetUnitManager();
 	class ABBuffManager* GetBuffManager();
+	class ABCore* GetEnemyCore(EUnitCamp selfCamp);
+	void SetCore(class ABCore* core);
 private:
 	class ABUnitManager* m_UnitManager = nullptr;
 	class ABBuffManager* m_BuffManager = nullptr;
+	class ABCore* m_RedCore = nullptr;
+	class ABCore* m_BlueCore = nullptr;
 };

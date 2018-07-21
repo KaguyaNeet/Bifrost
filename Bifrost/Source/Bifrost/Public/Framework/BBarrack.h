@@ -14,7 +14,18 @@ class BIFROST_API ABBarrack : public ABBuildingBase
 {
 	GENERATED_BODY()
 	
+public:
+	ABBarrack();
+
+	virtual void Produce() override;
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void Test(class ABCharacterBase* unit);
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Component")
+		class UArrowComponent* m_SpawnArrowComponent;
 	
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ProduceProperty")
+		UClass* m_CharacterClass;
 	
 };

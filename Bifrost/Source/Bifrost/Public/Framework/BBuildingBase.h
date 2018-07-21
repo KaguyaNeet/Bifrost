@@ -17,5 +17,17 @@ class BIFROST_API ABBuildingBase : public ABUnit
 public:
 	ABBuildingBase();
 	
-	
+	void StartProduce();
+
+	virtual void Produce();
+
+protected:
+	virtual void BeginPlay() override;
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ProduceProperty")
+		float m_MaxProduceTime = 0.f;
+
+private:
+	FTimerHandle m_ProduceTimer;
 };
