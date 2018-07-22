@@ -28,8 +28,8 @@ void ABUnit::BeginPlay()
 
 bool ABUnit::ChangeLifeValue(INT32 value)
 {
-	m_BaseAttribute.currentLifeValue = FMath::Clamp(m_BaseAttribute.currentLifeValue + value, 0, (int)m_BaseAttribute.maxLifeValue);
-	return m_BaseAttribute.currentLifeValue == 0 ? false : true;
+	m_BaseAttribute.CurrentLifeValue = FMath::Clamp(m_BaseAttribute.CurrentLifeValue + value, 0, (int)m_BaseAttribute.MaxLifeValue);
+	return m_BaseAttribute.CurrentLifeValue == 0 ? false : true;
 }
 
 void ABUnit::Death(ABUnit * deathCauser)
@@ -70,7 +70,7 @@ void ABUnit::ApplyDamage(const FDamageAttribute & damageAttribute, ABUnit * dama
 	}
 	else
 	{
-		UINT8 originalDefense = EDamageType::Physical == damageAttribute.damageType ? m_BaseAttribute.physicalDefense : m_BaseAttribute.magicDefense;
+		UINT8 originalDefense = EDamageType::Physical == damageAttribute.damageType ? m_BaseAttribute.PhysicalDefense : m_BaseAttribute.MagicDefense;
 		UINT8 actualDefense = originalDefense * (1 - static_cast<float>(damageAttribute.penetration) / MAX_DEFENSE);
 		actualDamage = damageAttribute.damageValue * (1 - static_cast<float>(actualDefense) / MAX_DEFENSE);
 	}

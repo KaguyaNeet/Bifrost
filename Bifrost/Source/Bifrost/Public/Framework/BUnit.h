@@ -53,24 +53,27 @@ struct FUnitBaseAttribute : public FTableRowBase
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(EditAnywhere)
-		UINT16 maxLifeValue = 0;
+		UINT16 MaxLifeValue = 0;
 	UPROPERTY(EditAnywhere)
-		UINT16 currentLifeValue = 0;
+		UINT16 CurrentLifeValue = 0;
 
 	UPROPERTY(EditAnywhere)
-		UINT8 physicalDefense = 0;
+		UINT8 PhysicalDefense = 0;
 	UPROPERTY(EditAnywhere)
-		UINT8 magicDefense = 0;
+		UINT8 MagicDefense = 0;
 
 	UPROPERTY(EditAnywhere)
-		UINT8 physicalPenetration = 0;
+		UINT8 PhysicalPenetration = 0;
 	UPROPERTY(EditAnywhere)
-		UINT8 magicPenetration = 0;
+		UINT8 MagicPenetration = 0;
 
 	UPROPERTY(EditAnywhere)
-		UINT16 physicalDamage = 0;
+		UINT16 PhysicalDamage = 0;
 	UPROPERTY(EditAnywhere)
-		UINT16 magicDamage = 0;
+		UINT16 MagicDamage = 0;
+
+	UPROPERTY(EditAnywhere)
+		float AttackSpeed = 1.0f;
 };
 
 struct FDamageAttribute
