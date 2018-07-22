@@ -3,6 +3,8 @@
 #include "BCard.h"
 #include "BUnit.h"
 
-void UBCard::Initialize(int cardKey)
+void UBCard::Initialize(const FCardAttribute& cardAttribute, CardFunc cardFunc)
 {
+	m_CardAttribute = cardAttribute;
+	m_CardFunction = cardFunc;
 }

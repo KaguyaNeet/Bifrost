@@ -14,13 +14,32 @@ enum class ECardFuncType
 	EnableWeapon,
 	DisableWeapon,
 	DeathWords,
-
+	BattleRoar,
+	AttackEffects,
+	PropertyIncrease,
+	PropertyDecrease,
+	EnableArmor,
+	DisableArmor,
+	LittleSpells,
+	ProduceIncrease,
+	ProduceDecrease,
+	LargeSpells
 };
 
 UENUM(BlueprintType)
 enum class ECardType : uint8
 {
+	ENone UMETA(DisplayName = "None"),
+	EArmor UMETA(DisplayName = "Armor"),
+	EWeapon UMETA(DisplayName = "Weapon"),
 	EAura UMETA(DisplayName = "Aura"),
+	EDeathWords UMETA(DisplayName = "DeathWords"),
+	EBattleRoar UMETA(DisplayName = "BattleRoar"),
+	EAttackEffects UMETA(DisplayName = "AttackEffects"),
+	EPropertyIncrease UMETA(DisplayName = "PropertyIncrease"),
+	ELittleSpells UMETA(DisplayName = "LittleSpells"),
+	EProduceIncrease UMETA(DisplayName = "ProduceIncrease"),
+	ELargeSpells UMETA(DisplayName = "LargeSpells")
 };
 
 USTRUCT()
@@ -40,6 +59,18 @@ struct FCardAttribute : public FTableRowBase
 		UTexture2D* m_CardTexture;
 	UPROPERTY(EditAnywhere)
 		UINT8 m_CardCost;
+
+	UPROPERTY(EditAnywhere)
+		UParticleSystem* m_FireParticle = nullptr;
+	UPROPERTY(EditAnywhere)
+		UParticleSystem* m_OwnParticle = nullptr;
+	UPROPERTY(EditAnywhere)
+		UParticleSystem* m_HitParticle = nullptr;
+	UPROPERTY(EditAnywhere)
+		UParticleSystem* m_BulletParticle = nullptr;
+
+	UPROPERTY(EditAnywhere)
+		AActor* m_SpawnActor = nullptr;
 };
 /**
  * 
@@ -53,15 +84,11 @@ public:
 	using CardFunc = void(*)(class ABUnit*, class ABUnit*, ECardFuncType);
 
 public:
-	void Initialize(int cardKey);
+	void Initialize(const FCardAttribute& cardAttribute, CardFunc cardFunc);
 
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		FName m_CardName;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		FString m_CardDescription;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		ECardType m_CardType;
+		FCardAttribute m_CardAttribute;
 	CardFunc m_CardFunction = nullptr;
 	
 	
