@@ -20,9 +20,14 @@ public:
 	class ABBuffManager* GetBuffManager();
 	class ABCore* GetEnemyCore(EUnitCamp selfCamp);
 	void SetCore(class ABCore* core);
+	void SetPlayerController(class ABPlayerController* playerController);
+	class ABPlayerController* GetPlayerController(EUnitCamp camp);
 private:
 	class ABUnitManager* m_UnitManager = nullptr;
 	class ABBuffManager* m_BuffManager = nullptr;
 	class ABCore* m_RedCore = nullptr;
 	class ABCore* m_BlueCore = nullptr;
+
+	class ABPlayerController* m_RedPlayerController = nullptr;
+	class ABPlayerController* m_BluePlayerController = nullptr;
 };

@@ -6,6 +6,16 @@
 #include "Framework/BBuildingBase.h"
 #include "BCore.generated.h"
 
+USTRUCT()
+struct FCoreLevelInfo : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LevelInfo")
+		FBuildingBaseLevelInfo BaseInfo;
+};
+
 /**
  * 
  */

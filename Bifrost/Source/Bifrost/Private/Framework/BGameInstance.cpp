@@ -4,6 +4,7 @@
 #include "BUnitManager.h"
 #include "BBuffManager.h"
 #include "BCore.h"
+#include "BPlayerController.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -74,4 +75,17 @@ void UBGameInstance::SetCore(ABCore * core)
 		return;
 	}
 	core->m_UnitCamp == EUnitCamp::EBlue ? m_BlueCore = core : m_RedCore = core;
+}
+
+void UBGameInstance::SetPlayerController(ABPlayerController * playerController)
+{
+	if (nullptr != playerController)
+	{
+		playerController->m_PlayerCamp == EUnitCamp::ERed ? m_RedPlayerController = playerController : m_BluePlayerController = playerController;
+	}
+}
+
+ABPlayerController * UBGameInstance::GetPlayerController(EUnitCamp camp)
+{
+	return (EUnitCamp::ERed == camp ? m_RedPlayerController : m_BluePlayerController);
 }
