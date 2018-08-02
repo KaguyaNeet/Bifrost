@@ -13,7 +13,10 @@ UCLASS()
 class BIFROST_API ABGameMode : public AGameMode
 {
 	GENERATED_BODY()
-	
+
+public:
+	ABGameMode();
+
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameProperty")
 		float m_BodyStrengthLifeAddtion = 0;
@@ -40,5 +43,8 @@ public:
 		float m_AgileAttackSpeedAddtion = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameProperty")
 		float m_AgileMoveSpeedAddtion = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameProperty")
+		int m_MaxCardNumPerBarrack = 0;
 
 };

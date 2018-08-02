@@ -49,6 +49,11 @@ void ABUnit::UnitTick()
 	}
 }
 
+UINT16 ABUnit::CalculateCurrentCardCost()
+{
+	return 0;
+}
+
 // Called every frame
 void ABUnit::Tick(float DeltaTime)
 {

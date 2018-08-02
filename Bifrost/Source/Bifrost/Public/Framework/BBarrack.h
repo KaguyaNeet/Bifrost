@@ -12,8 +12,19 @@ struct FBarrackLevelInfo : public FTableRowBase
 	GENERATED_USTRUCT_BODY()
 
 public:
+
+};
+
+USTRUCT()
+struct FBarrackLevelInfoBP : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LevelInfo")
 		FBuildingBaseLevelInfo BaseInfo;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "LevelInfo")
+		FBarrackLevelInfo BarrackInfo;
 
 };
 
@@ -36,8 +47,13 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	virtual void StartProduce() override;
+	virtual void StopProduce() override;
+
+	virtual UINT16 CalculateCurrentCardCost() override;
+
 private:
-	virtual void UpdateInfo() override;
+	virtual void Update() override;
 
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Component")
@@ -48,6 +64,11 @@ public:
 		
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		int m_CurrentCost = 0;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		FBarrackLevelInfo m_CurrentInfo;
+		TArray<FBarrackLevelInfo> m_BarrackInfo;
+
+private:
+	UINT16 m_LastCost = 0;
+	FTimerHandle m_CheckProduceTimer;
 };

@@ -38,7 +38,7 @@ enum class ECardType : uint8
 	EAttackEffects UMETA(DisplayName = "AttackEffects"),
 	EPropertyIncrease UMETA(DisplayName = "PropertyIncrease"),
 	ELittleSpells UMETA(DisplayName = "LittleSpells"),
-	EProduceIncrease UMETA(DisplayName = "ProduceIncrease"),
+	EBuilding UMETA(DisplayName = "Building"),
 	ELargeSpells UMETA(DisplayName = "LargeSpells")
 };
 
@@ -58,7 +58,11 @@ struct FCardAttribute : public FTableRowBase
 	UPROPERTY(EditAnywhere)
 		UTexture2D* m_CardTexture;
 	UPROPERTY(EditAnywhere)
-		UINT8 m_CardCost;
+		UINT8 m_ProduceCardCost = 0;
+	UPROPERTY(EditAnywhere)
+		UINT8 m_UseCardCost = 0;
+	UPROPERTY(EditAnywhere)
+		UINT8 m_TickCardCost = 0;
 
 	UPROPERTY(EditAnywhere)
 		UParticleSystem* m_FireParticle = nullptr;
@@ -89,6 +93,8 @@ public:
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		FCardAttribute m_CardAttribute;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		bool m_Active = true;
 	CardFunc m_CardFunction = nullptr;
 	
 	

@@ -25,11 +25,15 @@ public:
 	void AddMoney(UINT16 value);
 	UINT32 GetMoney();
 
+protected:
+	virtual void BeginPlay() override;
+
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated)
 		EUnitCamp m_PlayerCamp = EUnitCamp::ENeatual;
-	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated)
+		int m_Money = 0;
 	static ABPlayerController* GetPlayerController(ABUnit* caller);
 private:
-	int m_Money = 0;
+	
 };

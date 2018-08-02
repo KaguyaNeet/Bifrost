@@ -70,8 +70,7 @@ ABUnit* ABUnitManager::GetNearestUnit(class ABUnit* caller, const TArray<ABUnit*
 {
 	float tempNearest = FLT_MAX;
 	ABUnit* tempNearestUnit = nullptr;
-	int num = list.Num();
-	UE_LOG(LogTemp, Warning, TEXT("Num:%f"), num);
+
 	for (auto it : list)
 	{
 		if (it != caller)

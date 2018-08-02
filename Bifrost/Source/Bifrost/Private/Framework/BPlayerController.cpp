@@ -45,6 +45,16 @@ UINT32 ABPlayerController::GetMoney()
 	return m_Money;
 }
 
+void ABPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (UBGameInstance* gameInstance = Cast<UBGameInstance>(GetGameInstance()))
+	{
+		gameInstance->SetPlayerController(this);
+	}
+}
+
 ABPlayerController * ABPlayerController::GetPlayerController(ABUnit * caller)
 {
 	if (UBGameInstance* gameInstance = Cast<UBGameInstance>(caller->GetGameInstance()))

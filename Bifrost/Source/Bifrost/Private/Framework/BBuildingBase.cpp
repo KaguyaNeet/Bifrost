@@ -17,53 +17,65 @@ void ABBuildingBase::StartProduce()
 {
 	m_State = EBuildingState::EProduce;
 	GetWorldTimerManager().SetTimer(m_ProduceTimer, this, &ABBuildingBase::Produce, m_MaxProduceTime, true, m_MaxProduceTime);
+}
+
+void ABBuildingBase::StopProduce()
+{
+	m_State = EBuildingState::EStop;
 	GetWorldTimerManager().ClearTimer(m_ProduceTimer);
 }
 
+void ABBuildingBase::AddCard(UBCard * card)
+{
+}
+
+
 void ABBuildingBase::Produce()
 {
+	StartProduce();
 }
 
 void ABBuildingBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	m_Level = 0;
-	UpdateInfo();
-
+	m_Level = 1;
 }
 
 void ABBuildingBase::StartUpdate()
 {
+	UE_LOG(LogTemp, Warning, TEXT("ClickStartUpdate"));
 	if (ABPlayerController* playerController = ABPlayerController::GetPlayerController(this))
 	{
-		if (playerController->CostMoney(m_BaseLevelInfo.CostMoney))
+		if (m_Level < m_BaseLevelInfo.Num() && playerController->CostMoney(m_BaseLevelInfo[GetLevelInArray()].CostMoney))
 		{
+			StopProduce();
 			m_State = EBuildingState::EUpdate;
-			GetWorldTimerManager().SetTimer(m_UpdateTimer, this, &ABBuildingBase::UpdateInfo, false, m_BaseLevelInfo.UpdateTime);
-			GetWorldTimerManager().ClearTimer(m_ProduceTimer);
+			GetWorldTimerManager().SetTimer(m_UpdateTimer, this, &ABBuildingBase::Update, false, m_BaseLevelInfo[GetLevelInArray()].UpdateTime);
 		}
 	}
-}
-
-void ABBuildingBase::UpdateInfo()
-{
-	m_Level++;
-
-	StartProduce();
 }
 
 void ABBuildingBase::StopUpdate()
 {
 	if (EBuildingState::EUpdate == m_State)
 	{
-		m_State = EBuildingState::EProduce;
+		m_State = EBuildingState::EStop;
 		GetWorldTimerManager().ClearTimer(m_UpdateTimer);
 		StartProduce();
 
 		if (ABPlayerController* playerController = ABPlayerController::GetPlayerController(this))
 		{
-			playerController->AddMoney(m_BaseLevelInfo.CostMoney);
+			playerController->AddMoney(m_BaseLevelInfo[GetLevelInArray()].CostMoney);
 		}
 	}
 }
+
+
+void ABBuildingBase::Update()
+{
+	m_Level++;
+	m_State = EBuildingState::EStop;
+	StartProduce();
+}
+

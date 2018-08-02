@@ -8,7 +8,6 @@
 #include "GameFramework/Character.h"
 #include "BUnit.generated.h"
 
-
 enum class EDamageType
 {
 	Physical,
@@ -88,6 +87,9 @@ const UINT8 MAX_DEFENSE = 100;
 //How long to call UnitTick()
 const float UNIT_TICK_TIME = 1.f;
 
+/**
+* 
+*/
 UCLASS()
 class BIFROST_API ABUnit : public ACharacter
 {
@@ -115,6 +117,8 @@ protected:
 	// Called every buff circle time, not every frame
 	virtual void UnitTick();
 
+	virtual UINT16 CalculateCurrentCardCost();
+
 public:	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UnitProperty")
 		EUnitCamp m_UnitCamp = EUnitCamp::ENeatual;
@@ -124,6 +128,8 @@ public:
 		TMap<class UBBuff*, int> m_ShieldMap;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UnitProperty")
 		TArray<class UBBuff*> m_BuffList;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UnitProperty")
+		TArray<UBCard*> m_Cards = {nullptr};
 
 	EUnitLifeState m_UnitState = EUnitLifeState::EIdle;
 	UINT8 m_UnitBuffState[(UINT8)EUnitBuffState::max] = { 0 };

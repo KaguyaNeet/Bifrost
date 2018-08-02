@@ -81,7 +81,16 @@ void UBGameInstance::SetPlayerController(ABPlayerController * playerController)
 {
 	if (nullptr != playerController)
 	{
-		playerController->m_PlayerCamp == EUnitCamp::ERed ? m_RedPlayerController = playerController : m_BluePlayerController = playerController;
+		if (nullptr == m_RedPlayerController)
+		{
+			m_RedPlayerController = playerController;
+			return;
+		}
+		if (nullptr == m_BluePlayerController)
+		{
+			m_BluePlayerController = playerController;
+			return;
+		}
 	}
 }
 
